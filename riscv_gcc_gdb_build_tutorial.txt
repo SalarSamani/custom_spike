@@ -1,0 +1,94 @@
+RISC-V GCC & GDB Toolchain Build Tutorial for 32-bit (rv32imac)
+
+This guide helps you build a minimal bare-metal toolchain for RISC-V (rv32imac),
+suitable for running programs with Spike or other simulators.
+
+===============================
+Step 1: Setup workspace
+===============================
+Pick a directory to work in:
+
+    mkdir -p ~/riscvWorkspace/spike
+    cd ~/riscvWorkspace/spike
+
+===============================
+Step 2: Clone GCC source
+===============================
+Get the official GCC source (or a tag):
+
+    git clone https://gcc.gnu.org/git/gcc.git
+    cd gcc
+    ./contrib/download_prerequisites
+
+This downloads and links GMP, MPFR, MPC, and ISL libraries.
+
+===============================
+Step 3: Create build directory
+===============================
+Always build GCC outside the source directory:
+
+    cd ~/riscvWorkspace/spike
+    mkdir build-gcc
+    cd build-gcc
+
+===============================
+Step 4: Configure GCC
+===============================
+Configure for 32-bit bare-metal target with minimal C support:
+
+    ../gcc/configure \
+      --prefix=$HOME/riscvWorkspace/spike/toolchain32 \
+      --target=riscv32-unknown-elf \
+      --with-arch=rv32gc \
+      --with-abi=ilp32 \
+      --enable-languages=c \
+      --disable-nls \
+      --disable-multilib \
+      --with-newlib \
+      --without-headers
+
+- `--prefix`: where to install the toolchain
+- `--target`: specifies the cross-compilation target
+- `--with-arch` / `--with-abi`: instruction set and ABI
+- `--without-headers` + `--with-newlib`: for freestanding (no OS)
+
+===============================
+Step 5: Build GCC
+===============================
+Build only the C compiler first:
+
+    make all-gcc -j$(nproc)
+    make install-gcc
+
+===============================
+Step 6: Build and install GDB
+===============================
+Download GDB (if needed):
+
+    cd ~/riscvWorkspace/spike
+    wget https://ftp.gnu.org/gnu/gdb/gdb-13.2.tar.gz
+    tar -xf gdb-13.2.tar.gz
+    mkdir build-gdb
+    cd build-gdb
+
+Configure and build:
+
+    ../gdb-13.2/configure \
+      --prefix=$HOME/riscvWorkspace/spike/toolchain32 \
+      --target=riscv32-unknown-elf
+
+    make -j$(nproc)
+    make install
+
+===============================
+Step 7: Verify installation
+===============================
+    $HOME/riscvWorkspace/spike/toolchain32/bin/riscv32-unknown-elf-gcc -v
+    $HOME/riscvWorkspace/spike/toolchain32/bin/riscv32-unknown-elf-gdb -v
+
+You should see version output for both GCC and GDB.
+
+===============================
+You're ready!
+===============================
+You can now use this toolchain with Spike or other RISC-V emulators.
