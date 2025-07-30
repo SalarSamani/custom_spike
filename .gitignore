@@ -2,3 +2,4 @@ gcc/
 binutils-gdb/
 toolchain32/
 tools/
+*.elf
