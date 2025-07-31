@@ -20,7 +20,7 @@ IFS=$'\n\t'
 TARGET="riscv32-unknown-elf"
 TARGET_CORE="${TARGET_CORE:-rv32imac-ilp32}"
 JOBS=$(nproc)
-GDB_VER="15.2"
+# GDB_VER="15.2"
 
 # ─── Helpers ────────────────────────────────────────────────────────────────
 die()  { echo -e "\e[1;31m✖ ERROR:\e[0m $*" >&2; exit 1; }
@@ -116,25 +116,25 @@ make -j"${JOBS}"
 log "Installing final GCC"
 make install
 
-# ─── 6) Download & Extract GDB ───────────────────────────────────────────────
-log "Fetching GDB ${GDB_VER}"
-mkdir -p "${SRC_DIR}/gdb" && cd "${SRC_DIR}/gdb"
-if [[ ! -f "gdb-${GDB_VER}.tar.xz" ]]; then
-  wget -c "https://ftp.gnu.org/gnu/gdb/gdb-${GDB_VER}.tar.xz"
-fi
-if [[ ! -f "configure" ]]; then
-  tar --strip-components=1 -xf "gdb-${GDB_VER}.tar.xz" -C "${SRC_DIR}/gdb"
-fi
+# # ─── 6) Download & Extract GDB ───────────────────────────────────────────────
+# log "Fetching GDB ${GDB_VER}"
+# mkdir -p "${SRC_DIR}/gdb" && cd "${SRC_DIR}/gdb"
+# if [[ ! -f "gdb-${GDB_VER}.tar.xz" ]]; then
+#   wget -c "https://ftp.gnu.org/gnu/gdb/gdb-${GDB_VER}.tar.xz"
+# fi
+# if [[ ! -f "configure" ]]; then
+#   tar --strip-components=1 -xf "gdb-${GDB_VER}.tar.xz" -C "${SRC_DIR}/gdb"
+# fi
 
-# ─── 7) Configure & Build GDB ────────────────────────────────────────────────
-log "Configuring GDB"
-mkdir -p "${BUILD_DIR}/gdb" && cd "${BUILD_DIR}/gdb"
-"${SRC_DIR}/gdb/configure" --prefix="${PREFIX}" --target="${TARGET}"
+# # ─── 7) Configure & Build GDB ────────────────────────────────────────────────
+# log "Configuring GDB"
+# mkdir -p "${BUILD_DIR}/gdb" && cd "${BUILD_DIR}/gdb"
+# "${SRC_DIR}/gdb/configure" --prefix="${PREFIX}" --target="${TARGET}"
 
-log "Building GDB"
-make -j"${JOBS}"
-log "Installing GDB"
-make install
+# log "Building GDB"
+# make -j"${JOBS}"
+# log "Installing GDB"
+# make install
 
 # ─── Verification ────────────────────────────────────────────────────────────
 log "Verifying final toolchain:"

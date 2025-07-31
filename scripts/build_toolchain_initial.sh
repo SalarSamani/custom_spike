@@ -17,8 +17,8 @@ IFS=$'\n\t'
 # ─── Defaults ────────────────────────────────────────────────────────────────
 TARGET="riscv32-unknown-elf"
 TARGET_CORE="${TARGET_CORE:-rv32imac-ilp32}"
-BINUTILS_REF="binutils-2_44"
-GCC_REF="releases/gcc-14.2.0"
+BINUTILS_REF="custom_mmu"
+GCC_REF="custom_mmu"
 JOBS=$(nproc)
 
 # ─── Helpers ────────────────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ mkdir -p \
 if [[ ! -d "${BINUTILS_SRC}/.git" ]]; then
   log "Cloning binutils-gdb (${BINUTILS_REF})"
   git clone --depth 1 --branch "${BINUTILS_REF}" \
-    https://sourceware.org/git/binutils-gdb.git "${BINUTILS_SRC}"
+    https://github.com/SalarSamani/binutils-gdb.git "${BINUTILS_SRC}"
 else
   log "Updating binutils-gdb to ${BINUTILS_REF}"
   git -C "${BINUTILS_SRC}" fetch origin
@@ -118,7 +118,7 @@ ok "Binutils done"
 if [[ ! -d "${GCC_SRC}/.git" ]]; then
   log "Cloning GCC (${GCC_REF})"
   git clone --depth 1 --branch "${GCC_REF}" \
-    https://gcc.gnu.org/git/gcc.git "${GCC_SRC}"
+    https://github.com/SalarSamani/gcc.git "${GCC_SRC}"
 else
   log "Updating GCC to ${GCC_REF}"
   git -C "${GCC_SRC}" fetch origin
