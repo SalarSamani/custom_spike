@@ -60,12 +60,10 @@ done
 
 test -d "${SRC}/binutils-gdb" || die "No binutils source; run full build first"
 test -d "${SRC}/gcc"         || die "No gcc source;    run full build first"
-test -d "${SRC}/gdb"         || die "No gdb source;    run full build first"
 
 # ─── Figure Out What Changed ─────────────────────────────────────────────────
 rebuild_binutils=false
 rebuild_gcc=false
-rebuild_gdb=false
 
 # Binutils
 BIN_SRC="${SRC}/binutils-gdb"
@@ -85,17 +83,8 @@ if [[ ! -f "$GCC_STAMP" ]] || ! grep -qFx "$cur_gcc" "$GCC_STAMP"; then
   rebuild_gcc=true
 fi
 
-# GDB
-GDB_SRC="${SRC}/gdb"
-GDB_BLD="${BUILD}/gdb"
-GDB_STAMP="${GDB_BLD}/.src_hash"
-cur_gdb=$(compute_hash "$GDB_SRC")
-if [[ ! -f "$GDB_STAMP" ]] || ! grep -qFx "$cur_gdb" "$GDB_STAMP"; then
-  rebuild_gdb=true
-fi
-
 # Nothing to do?
-if ! $rebuild_binutils && ! $rebuild_gcc && ! $rebuild_gdb; then
+if ! $rebuild_binutils && ! $rebuild_gcc; then
   ok "No source changes detected; nothing to rebuild."
   exit 0
 fi
@@ -120,16 +109,6 @@ if $rebuild_gcc; then
   make install
   echo "$cur_gcc" > "$GCC_STAMP"
   ok "GCC rebuilt."
-fi
-
-# ─── Rebuild GDB ───────────────────────────────────────────────────────────────
-if $rebuild_gdb; then
-  log "Rebuilding GDB (incremental)..."
-  cd "$GDB_BLD"
-  make -j"${JOBS}"
-  make install
-  echo "$cur_gdb" > "$GDB_STAMP"
-  ok "GDB rebuilt."
 fi
 
 ok "Incremental rebuild complete."
