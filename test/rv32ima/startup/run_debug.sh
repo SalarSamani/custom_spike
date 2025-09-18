@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# === Prerequisites ===
+make
+
 # === Configuration ===
 SPIKE_BIN="${SPIKE}/bin/spike"
 OPENOCD_BIN="${OPENOCD}/bin/openocd"
