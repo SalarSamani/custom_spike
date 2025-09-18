@@ -4,7 +4,8 @@ IFS=$'\n\t'
 
 # ─── Configuration ────────────────────────────────────────────────────────────
 REPO="https://github.com/riscv-collab/riscv-openocd.git"
-BRANCH="riscv"
+# BRANCH="riscv"
+BRANCH="scalable_mmu"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TOOLS_BASE="$ROOT/tools/openocd"
 SRC_DIR="$TOOLS_BASE/source"
