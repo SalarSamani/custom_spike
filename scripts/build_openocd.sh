@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # ─── Configuration ────────────────────────────────────────────────────────────
-REPO="https://github.com/riscv-collab/riscv-openocd.git"
+REPO="https://github.com/salarsamani/riscv-openocd.git"
 # BRANCH="riscv"
 BRANCH="scalable_mmu"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
