@@ -1,0 +1,266 @@
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: 800000fc
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 0
+exp_idx is: 0
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800000cf
+exp_ppn is: 800000
+ad is: 40
+page_base is: 80000000
+phys is: 800000fc
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: 800000fe
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 0
+exp_idx is: 0
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800000cf
+exp_ppn is: 800000
+ad is: 40
+page_base is: 80000000
+phys is: 800000fe
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000100
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000100
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000102
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000102
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000104
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000104
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000106
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000106
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000108
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000108
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff8000010a
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 8000010a
+**************************
+Hello world
+Hello world
+type is store
+addr is: 80003000
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 30
+exp_idx is: 3
+exp_page_selector is: 1
+exp_base_paddr is: 80001484
+exp_base is: 80001440
+exp_pte is: 800030cf
+exp_ppn is: 80003
+ad is: c0
+page_base is: 80003000
+phys is: 80003000
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff8000010c
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 8000010c
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff8000010e
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 8000010e
+**************************
+Hello world
+Hello world
+type is load
+addr is: 80003000
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 30
+exp_idx is: 3
+exp_page_selector is: 1
+exp_base_paddr is: 80001484
+exp_base is: 80001440
+exp_pte is: 800030cf
+exp_ppn is: 80003
+ad is: 40
+page_base is: 80003000
+phys is: 80003000
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000110
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000110
+**************************
+Hello world
+Hello world
+type is fetch
+addr is: ffffffff80000112
+base is: 80001000
+linear_idx is: 80
+linear_pte_paddr is: 80001200
+linear_ppn is: 80001480
+exp_vpn is: 1
+exp_idx is: 1
+exp_page_selector is: 0
+exp_base_paddr is: 80001480
+exp_base is: 80001400
+exp_pte is: 800001cf
+exp_ppn is: 800001
+ad is: 40
+page_base is: 80000100
+phys is: 80000112

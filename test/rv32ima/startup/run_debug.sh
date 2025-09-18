@@ -26,7 +26,7 @@ trap cleanup EXIT INT TERM
 
 # === Start Spike (quiet) ===
 echo "[*] Starting Spike on RBB port ${RBB_PORT}..."
-"$SPIKE_BIN" -m64 --isa=rv32ima_zicsr_zifencei --rbb-port="$RBB_PORT" --halted "$ELF_FILE" \
+"$SPIKE_BIN" -m256 --isa=rv32ima_zicsr_zifencei --rbb-port="$RBB_PORT" --halted "$ELF_FILE" \
     &> /dev/null &
 SPIKE_PID=$!
 sleep 1

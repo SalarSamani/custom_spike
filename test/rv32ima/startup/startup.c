@@ -45,35 +45,39 @@ void hls_init(uint32_t hartid) {
 
 /*------------------------------------------------------------*/
 /* Two-level Sv32 page tables */
-static uint32_t root_page_table[PT_ENTRIES] __attribute__((aligned(PGSIZE)));
-static uint32_t second_level_table[PT_ENTRIES] __attribute__((aligned(PGSIZE)));
+static uint32_t linear_page_table[256] __attribute__((aligned(4096)));
+
+static uint32_t exp_page_table256[16] __attribute__((aligned(64)));
+static uint32_t exp_page_table4k[16] __attribute__((aligned(64)));
+static uint32_t exp_page_selector_array[4] __attribute__((aligned(16)));
 
 void mmu_init(void) {
-    /* Clear all root and second-level entries */
-    for (int i = 0; i < PT_ENTRIES; i++) {
-        root_page_table[i]        = 0;
-        second_level_table[i]     = 0;
+
+    for (int i = 0; i < 256; i++) {
+        linear_page_table[i]        = 0;
     }
 
-    /* Calculate indices for VA = 0x80000000 */
     uintptr_t va_base = 0x80000000U;
-    uint32_t vpn1 = (va_base >> 22) & 0x3FF;
-    uint32_t vpn0 = (va_base >> 12) & 0x3FF;
-    uint32_t ppn_root = ((uintptr_t)root_page_table) >> 12;
-    uint32_t ppn_2nd  = ((uintptr_t)second_level_table) >> 12;
+    uint32_t linear_idx = (va_base >> 24) & 0xFF;
 
-    /* Root: point vpn1 to second-level table */
-    root_page_table[vpn1] = (ppn_2nd << 10) | PTE_V;
+    linear_page_table[linear_idx] = ((uintptr_t)exp_page_selector_array);
+    exp_page_selector_array[0] = ((uintptr_t)exp_page_table256);
+    exp_page_selector_array[1] = ((uintptr_t)exp_page_table4k);
 
-    /* Second level: identity-map 256 KiB = 64 pages */
-    for (uint32_t i = 0; i < 64; i++) {
+    for (uint32_t i = 0; i < 16; i++) {
         /* Physical PPN for page */
-        uint32_t ppn = ((va_base >> 12) + i);
-        second_level_table[vpn0 + i] = (ppn << 10) | PTE_D | PTE_A | PTE_V | PTE_RWX;
+        uint32_t ppn = ((va_base & 0xFFFFFF00) + 256 * i);
+        exp_page_table256[i] = (ppn) | PTE_D | PTE_A | PTE_V | PTE_RWX;
+        if (i == 0)
+        {
+            continue;
+        } else {
+            ppn = (((va_base) & 0xFFFFFF00) + 4096 * i);
+            exp_page_table4k[i] = (ppn) | PTE_D | PTE_A | PTE_V | PTE_RWX;
+        }
     }
 
-    /* Write SATP: MODE=1 (Sv32), ASID=0, PPN = root_table PPN */
-    uint32_t satp_val = (1U << 31) | ppn_root;
+    uint32_t satp_val = (1U << 31) | (((uintptr_t)linear_page_table) >> 8);
     write_csr(satp, satp_val);
 
     /* Flush TLB */
