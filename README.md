@@ -1,4 +1,4 @@
-# RISC-V Toolchain and Debug Environment
+# custom SPIKE(RISC-V) supports scalable MMU
 
 This project includes custom modifications to both Spike and OpenOCD to support my experimental MMU configuration for RISC-V. These changes were necessary to properly test and debug MMU behavior in a riscv32 environment. The provided build scripts will compile these modified versions so you can reproduce the same setup seamlessly.
 
